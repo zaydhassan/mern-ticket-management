@@ -200,16 +200,17 @@ app.get('/api/admin/pending-users', async (req, res) => {
   }
 });
 
-const changePasswordRoutes = require("./routes/changepassword"); // Import change password route
-app.use("/api/change-password", changePasswordRoutes); // Change password route
+const changePasswordRouter = require("./routes/changepassword"); // Import change password route
+app.use(changePasswordRouter); // Change password route
 
 const prevTicketsRouter = require("./routes/prevtickets");
 app.use(prevTicketsRouter);
 
 const assignAgentsRouter = require("./routes/assignagents"); // Updated import
-// const usersRouter = require("./routes/users");
 app.use(assignAgentsRouter); // Updated route
-// app.use(usersRouter);
+
+const assignedTicketRouter = require("./routes/assignedtickets");
+app.use(assignedTicketRouter); 
 
 
 // Server Start

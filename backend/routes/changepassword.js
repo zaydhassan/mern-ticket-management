@@ -5,7 +5,7 @@ const User = require("../models/User");
 const authenticate = require("../middleware/authenticate");
 
 // Change Password API
-router.post("/", authenticate, async (req, res) => {
+router.post("/api/change-password", authenticate, async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
     const userId = req.user.id; // Get user_id from authentication middleware

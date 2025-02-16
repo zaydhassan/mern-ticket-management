@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../styles/assignedtickets.css";
 
-
 const AssignedTickets = () => {
     const [tickets, setTickets] = useState([]);
     const [filteredTickets, setFilteredTickets] = useState([]);
@@ -38,7 +37,6 @@ const AssignedTickets = () => {
     
         fetchTickets();
     }, []);
-    
 
     // Handle Sorting
     const handleSort = () => {
@@ -153,17 +151,6 @@ const AssignedTickets = () => {
                             <p className="ticket-priority">
                                 <strong>Priority:</strong> {ticket.priority}
                             </p>
-
-                            {ticket.attachments && ticket.attachments.length > 0 && (
-                                <p className="ticket-attachments">
-                                    <strong>Attachments:</strong>
-                                    {ticket.attachments.map((attachment, index) => (
-                                        <a key={index} href={attachment} target="_blank" rel="noopener noreferrer" className="attachment-link">
-                                            Attachment {index + 1}
-                                        </a>
-                                    ))}
-                                </p>
-                            )}
 
                             <a href={`/ticket/${ticket.ticket_id}`} className="view-details">
                                 View Details
