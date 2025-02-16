@@ -1,0 +1,151 @@
+.tickets-container {
+  padding-top: 0.5rem;
+  width: 85%;
+  margin: auto;
+  /* font-family: Arial, sans-serif; */
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.sort-btn {
+  padding: 8px 12px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sort-btn i {
+  font-size: 16px;
+}
+
+.ticket-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  font-size: 15px;
+  color: #666;
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #666 ;
+}
+
+.ticket-id, .ticket-date {
+  font-size: 15px;
+  color: #666;
+}
+
+/* .ticket-subject {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.ticket-subject a {
+  text-decoration: none;
+  color: #000;
+}
+
+.ticket-subject a:hover {
+  text-decoration: underline;
+} */
+
+.ticket-subject, .ticket-category, .ticket-priority, .ticket-attachments {
+  font-size: 14px;
+  color: #555;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.closed {
+  background: #e8ffe8;
+  color: #28a745;
+}
+
+.status.open {
+  background: #e0f3ff;
+  color: #007bff;
+}
+
+.view-details {
+  color: darkblue;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 14px;
+  align-self: flex-end;
+}
+
+.view-details:hover {
+  text-decoration: underline;
+}
+
+.attachment-link {
+  display: block;
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.attachment-link:hover {
+  text-decoration: underline;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-btn, .sort-btn, .clear-filters {
+  background-color: #a5a5a5;
+  color: black;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.filter-btn:hover, .sort-btn:hover, .clear-filters:hover {
+  background-color: #666;
+}
+
+.filters-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.filters-container select {
+  padding: 5px;
+}
+
+.clear-filters{
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+}

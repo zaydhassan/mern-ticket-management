@@ -1,0 +1,111 @@
+.container {
+  width: 90%;
+  display: block;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-heading {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.ticket-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.ticket-table th,
+.ticket-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.ticket-table th {
+  background: #f8f9fa;
+  font-weight: bold;
+}
+
+.status-badge {
+  padding: 7px 12px;
+  border-radius: 20px;
+  color: black;
+}
+
+.status-badge.open {
+  background: rgb(180, 255, 180);
+}
+
+.status-badge.closed {
+  background: red;
+}
+
+.assign-btn {
+  background: #2da4f9;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.assign-btn:hover {
+  background: darkblue;
+}
+
+/* Agent Display */
+.agent-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Change Button (icon) */
+.change-btn {
+  background: transparent;
+  border: none;
+  color: black;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.change-btn:hover {
+  color: darkblue;
+}
+
+/* Dropdown */
+.agent-dropdown {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 5px;
+}
+
+/* Dropdown select */
+.agent-dropdown select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Save button */
+.save-btn {
+  background: green;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.save-btn:hover {
+  background: darkgreen;
+}

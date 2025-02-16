@@ -1,0 +1,72 @@
+/* Custom styles for RaiseTicket component */
+.main {
+  max-width: 60vw;
+  height: 90vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto; /* Ensure centering */
+}
+
+.card {
+  width: 100%;
+  max-width: 500px; /* Limit card width for better form appearance */
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.text-danger {
+  color: #ff0000;
+}
+
+.text-muted {
+  font-size: 0.8rem;
+}
+
+button[type="submit"] {
+  background-color: #3fafff; /* Update submit button color */
+}
+
+button.btn-outline-dark {
+  border-color: #000;
+  color: #000;
+}
+
+/* Styles for selected file list */
+.selected-files {
+  margin-top: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.selected-files li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+/* Remove button style */
+.remove-file-btn {
+  background: transparent;
+  border: none;
+  color: rgb(96, 96, 96);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.remove-file-btn:hover {
+  color: black;
+}

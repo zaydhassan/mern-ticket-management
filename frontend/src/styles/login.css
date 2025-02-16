@@ -1,0 +1,80 @@
+/* Login form container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb); /* Soft gradient */
+  }
+  
+  /* Login form styling */
+  .login-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+  }
+  
+  /* Heading */
+  .login-form h1 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.5rem;
+  }
+  
+  /* Input fields */
+  .login-form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  /* Focus styles */
+  .login-form input:focus {
+    outline: none;
+    border-color: #4caf50;
+  }
+  
+  /* Login button */
+  .login-button {
+    width: 100%;
+    padding: 0.8rem;
+    background: linear-gradient(to right, #4caf50, #81c784);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .login-button:hover {
+    background: linear-gradient(to right, #43a047, #66bb6a);
+  }
+  
+  /* Message styling */
+  .message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #f44336; /* Red for error messages */
+  }
+  
+  /* Link styling */
+  .login-link {
+    font-size: 0.9rem;
+  }
+  
+  .login-link a {
+    color: #4caf50;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  

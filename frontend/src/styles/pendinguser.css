@@ -1,0 +1,44 @@
+.user-auth-container {
+  max-width: 90vw;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-table th, .user-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.user-table th {
+  background-color: #f4f4f4;
+}
+
+.approve-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.reject-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.no-users-message {
+  font-size: 18px;
+  color: #666;
+  margin-top: 20px;
+}
