@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../styles/prevtickets.css";
 import Navbar from "./Navbar";
@@ -14,7 +15,7 @@ const PreviousTickets = () => {
         priority: "",
     });
 
-    
+
     useEffect(() => {
         const fetchTickets = async () => {
             try {
@@ -78,7 +79,7 @@ const PreviousTickets = () => {
             <div className="tickets-container">
                 <div className="heading">
                     <h2>Previous Tickets ({filteredTickets.length})</h2>
-                    
+
                     <div className="buttons">
                         {/* Sort By Button */}
                         <button className="sort-btn" onClick={handleSort}>
@@ -140,7 +141,7 @@ const PreviousTickets = () => {
                             </p>
 
                             <p className="ticket-category">
-                                <strong>Category:</strong> {ticket.category} - {ticket.sub_category}
+                                <strong>Category:</strong> {ticket.category} 
                             </p>
 
                             <p className="ticket-priority">
@@ -158,9 +159,9 @@ const PreviousTickets = () => {
                                 </p>
                             )}
 
-                            <a href={`/ticket/${ticket.ticket_id}`} className="view-details">
+                            <Link to={`/employee/ticket/${ticket.ticket_id}`} className="view-details">
                                 View Details
-                            </a>
+                            </Link>
                         </div>
                     ))
                 ) : (

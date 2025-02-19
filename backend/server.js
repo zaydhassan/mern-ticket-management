@@ -212,6 +212,12 @@ app.use(assignAgentsRouter); // Updated route
 const assignedTicketRouter = require("./routes/assignedtickets");
 app.use(assignedTicketRouter); 
 
+const ticketDetailsRouter = require("./routes/ticketdetails");
+app.use(ticketDetailsRouter);
+
+const commentRoutes = require("./routes/comments");
+app.use("/api/ticket", commentRoutes);
+
 
 // Server Start
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

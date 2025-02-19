@@ -194,7 +194,7 @@ const RaiseTicket = () => {
                       className="remove-file-btn"
                       onClick={() => removeFile(index)}
                     >
-                      <i class="bi bi-x-lg"></i>
+                      <i className="bi bi-x-lg"></i>
                     </button>
                   </li>
                 ))}

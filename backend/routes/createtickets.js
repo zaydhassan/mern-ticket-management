@@ -1,58 +1,60 @@
 const express = require("express");
 const router = express.Router();
 const Ticket = require("../models/Ticket");
-const upload = require("../middleware/fileUpload");
-const authenticate = require("../middleware/authenticate"); // JWT authentication middleware
+const TicketAttachment = require("../models/TicketAttachments"); // Import the attachment model
+const upload = require("../middleware/fileUpload"); // File upload middleware
+const authenticate = require("../middleware/authenticate"); // Authentication middleware
 
 // POST: Create a new ticket with attachments
 router.post("/api/createtickets", authenticate, upload.array("attachments"), async (req, res) => {
-  const { subject, description, priority, category } = req.body; 
+  const { subject, description, priority, category } = req.body; // Extract form data from request
 
   try {
-    const userId = req.user.id; // Get user ID from the JWT token
-
-    if (!userId) {
-      return res.status(401).json({ message: "Unauthorized: User ID missing" });
-    }
+    const userId = req.user.id; // Get the logged-in user's ID from the JWT token
 
     // Validate required fields
     if (!subject || !priority || !category) {
-      return res.status(400).json({ message: "All fields (title, description, priority, category) are required." });
+      return res.status(400).json({ message: "All fields (subject, priority, category) are required." });
     }
 
-    // Ensure category is valid
-    const validCategories = ["IT", "HR", "Admin"];
-    if (!validCategories.includes(category)) {
-      return res.status(400).json({ message: "Invalid category. Choose from IT, HR, Admin." });
-    }
-
-    // Handle file attachments if any
+    // Handle file attachments if they exist
     const attachments = req.files?.length
-      ? req.files.map((file) => ({
-          fileName: file.originalname,
-          fileUrl: `uploads/${file.filename}`,
+      ? await Promise.all(req.files.map(async (file) => {
+          const attachment = new TicketAttachment({
+            ticket_id: 0, // Temporary value, will be updated after ticket creation
+            file_url: `uploads/${file.filename}`,
+            file_name: file.originalname,
+          });
+          await attachment.save(); // Save each attachment
+          return attachment;
         }))
       : [];
 
-    // Find the latest ticket ID to increment
+    // Find the latest ticket ID and increment it
     const latestTicket = await Ticket.findOne().sort({ ticket_id: -1 });
     const ticket_id = latestTicket ? latestTicket.ticket_id + 1 : 1;
 
-    // Create the new ticket
+    // Create a new ticket
     const ticket = new Ticket({
       ticket_id,
       subject,
       description,
-      user_id: userId, // Store the authenticated user's ID
+      user_id: userId,
       priority,
-      category, // Save category
-      status: "Open",
-      attachments,
+      category,
+      status: "Open", // Set default status to "Open"
     });
 
-    await ticket.save(); // Save the ticket in the database
+    // Save the ticket to the database
+    await ticket.save();
 
-    res.status(201).json({ message: "Ticket created successfully", ticket });
+    // Update the attachments with the correct ticket_id
+    for (let attachment of attachments) {
+      attachment.ticket_id = ticket.ticket_id; // Link the attachment to the created ticket
+      await attachment.save(); // Update the attachment
+    }
+
+    res.status(201).json({ message: "Ticket created successfully", ticket }); // Send success response
   } catch (err) {
     console.error("Error creating ticket:", err);
     res.status(500).json({ message: "Error creating ticket", error: err.message });

@@ -12,7 +12,8 @@ import AdminDashboard from './components/AdminDashboard';
 import ChangePassword from './components/ChangePassword';
 import PreviousTickets from './components/Employee/PreviousTickets';
 import TicketsPage from './components/Admin/TicketsPage';
-
+import TicketDetails from './components/Employee/TicketDetails';
+import AgentTicketDetails from './components/Agent/AgentTicketDetails';
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/dashboard-employee/previous-tickets" element={<PreviousTickets />} />
         <Route path="/dashboard-admin/all-tickets" element={<TicketsPage />} />
+        <Route path="/employee/ticket/:ticketId" element={<TicketDetails />} />
+        <Route path="/ticket/:ticketId" element={<AgentTicketDetails />} />
       </Routes>
     </Router>
   );
