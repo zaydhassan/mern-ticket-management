@@ -69,24 +69,6 @@ h2 {
     border-radius: 5px;
 }
 
-/* .comment-list {
-    max-height: 500px;
-    overflow-y: auto;
-    background: white;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.comment-item {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-}
-
-.comment-item:last-child {
-    border-bottom: none;
-} */
-
 textarea.form-control {
     resize: none;
 }
@@ -110,19 +92,22 @@ textarea.form-control {
 
 .send-button {
     height: 45px;
-    width: 50px;
+    width: 40px;
     font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 45%;
     transition: opacity 0.2s ease-in-out;
-    
+    color: grey;
+    border: none;  /* Removes any border */
+    background: transparent;  /* Removes background */
 }
 
 
 .send-button:hover {
-    background-color: #111b70;
+    background-color: rgba(0, 0, 0, 0.1); 
+    color: rgb(41, 40, 40);
 }
 
 .comment-list {

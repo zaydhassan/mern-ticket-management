@@ -92,6 +92,11 @@
   color: #007bff;
 }
 
+.status.in-progress {
+  background-color: #f9e8d4;
+  color: #e67e22;
+}
+
 .view-details {
   color: darkblue;
   font-weight: bold;

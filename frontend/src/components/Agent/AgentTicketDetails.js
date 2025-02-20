@@ -167,7 +167,7 @@ const AgentTicketDetails = () => {
                                 className="form-control small-textarea"
                             />
                             <button className="btn btn-primary send-button" onClick={handleCommentSubmit} disabled={commentLoading}>
-                                <i className="bi bi-send"></i>
+                                <i className="bi bi-send-fill"></i>
                             </button>
                         </div>
                     </div>

@@ -14,6 +14,7 @@ router.get("/api/agents", authenticate, async (req, res) => {
   }
 });
 
+
 // Assign agent to a ticket
 router.put("/api/tickets/:ticketId/assign", authenticate, async (req, res) => {
   const { ticketId } = req.params;

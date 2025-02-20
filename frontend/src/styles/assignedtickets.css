@@ -1,5 +1,5 @@
 .tickets-container {
-    max-width: 900px;
+    max-width: 80%;
     margin: auto;
     padding: 20px;
 }
@@ -74,6 +74,11 @@
 }
 
 .status.open {
+    background-color: #f9e8d4;
+    color: #e67e22;
+}
+
+.status.in-progress {
     background-color: #f9e8d4;
     color: #e67e22;
 }

@@ -1,5 +1,10 @@
+.ticket-container{
+  width: 90vw;
+  margin:0px 5%;
+}
+
 .container {
-  width: 90%;
+  /* width: 100%; */
   display: block;
   margin: auto;
   padding: 20px;
@@ -11,43 +16,68 @@
 .ticket-heading {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin: 20px 0px;
+  text-align: center;
 }
 
+/* Scrollable Table Wrapper */
+.table-wrapper {
+  max-height: 400px; /* Approx height for 8 rows */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Table Styling */
 .ticket-table {
   width: 100%;
+  
   border-collapse: collapse;
-  margin-top: 10px;
 }
 
 .ticket-table th,
 .ticket-table td {
-  border: 1px solid #ddd;
+  border: 1px solid rgb(178, 178, 178); /* Black border */
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }
 
 .ticket-table th {
-  background: #f8f9fa;
+  background: #d6d6d6;
   font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
+.ticket-table tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+/* Status Badges */
 .status-badge {
   padding: 7px 12px;
-  border-radius: 20px;
+  border-radius: 5px;
   color: black;
+  font-weight: bold;
+  display: inline-block;
 }
 
 .status-badge.open {
-  background: rgb(180, 255, 180);
+  color: rgb(28, 149, 255);
 }
 
 .status-badge.closed {
-  background: red;
+  color: #26d24e;
 }
 
+.status-badge.in-progress {
+  color: #ff9436;
+}
+
+/* Assign Button */
 .assign-btn {
-  background: #2da4f9;
+  background: #29a6ff;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -56,13 +86,14 @@
 }
 
 .assign-btn:hover {
-  background: darkblue;
+  background: rgb(2, 2, 234);
 }
 
 /* Agent Display */
 .agent-display {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -84,6 +115,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-content: center;
   margin-top: 5px;
 }
 
@@ -96,16 +128,13 @@
 
 /* Save button */
 .save-btn {
-  background: green;
-  color: white;
+  background: transparent;
+  color: #29a6ff;
   border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 10px;
 }
 
 .save-btn:hover {
-  background: darkgreen;
+  color: rgb(2, 2, 234);
 }

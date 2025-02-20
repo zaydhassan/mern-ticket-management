@@ -120,6 +120,7 @@ const AssignedTickets = () => {
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
+                            <option value="Critical">Critical</option>
                         </select>
 
                         <button className="clear-filters" onClick={clearFilters}><i className="bi bi-x-lg"></i></button>
@@ -137,7 +138,7 @@ const AssignedTickets = () => {
                                 <span className="ticket-date">
                                     <strong>Created On:</strong> {new Date(ticket.created_at).toLocaleString()}
                                 </span>
-                                <span className={`status ${ticket.status.toLowerCase()}`}>{ticket.status}</span>
+                                <span className={`status ${ticket.status.toLowerCase().replace(/\s+/g, '-')}`}>{ticket.status}</span>
                             </div>
 
                             <p className="ticket-subject">
@@ -166,3 +167,4 @@ const AssignedTickets = () => {
 };
 
 export default AssignedTickets;
+
