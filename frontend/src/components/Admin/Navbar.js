@@ -63,6 +63,11 @@ const Navbar = () => {
                 Tickets
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/dashboard-admin/resolved-tickets">
+                Resolved Tickets
+              </a>
+            </li>
           </ul>
 
           {/* Right Section */}

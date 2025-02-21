@@ -71,6 +71,4 @@ router.post("/:ticketId/comments", authenticate, async (req, res) => {
 });
 
 
-
-
 module.exports = router;

@@ -13,6 +13,9 @@ const TicketDetails = () => {
     const [commentLoading, setCommentLoading] = useState(false);
     const [commentError, setCommentError] = useState(null);
     const [userId, setUserId] = useState(null);
+    const [showRatingModal, setShowRatingModal] = useState(false);
+    const [rating, setRating] = useState(0);
+    const [feedback, setFeedback] = useState("");
 
     useEffect(() => {
         const fetchUserData = () => {
@@ -88,19 +91,45 @@ const TicketDetails = () => {
         }
     };
 
+    const handleRatingSubmit = async () => {
+        if (rating < 1 || rating > 5) {
+            alert("Please select a rating between 1 and 5.");
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem("token");
+            await axios.post(
+                `http://localhost:5000/api/ticket/${ticketId}/rate`,
+                { rating, feedback },
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            );
+
+            alert("Thank you for your feedback!");
+            setShowRatingModal(false);
+        } catch (error) {
+            alert("Error submitting rating. Please try again.");
+        }
+    };
+
+
     if (loading) return <p>Loading ticket details...</p>;
     if (error) return <p className="error">{error}</p>;
 
     return (
         <div className="container-fluid ticket-details-container">
             <div className="header-container">
-                <h2>Ticket Details</h2>
+                <h2>Ticket Details #{ticket.ticket_id}</h2>
                 <a href="/dashboard-employee"><button className="btn btn-primary back-button">Raise New Ticket</button></a>
             </div>
             <div className="row">
                 <div className="col-lg-4 col-md-12">
                     <div className="ticket-info">
-                        <p><strong>Ticket ID:</strong> {ticket.ticket_id}</p>
+                        <h3 className="attachments-heading">Details</h3>
+                        <hr className="heading-line" />
+                        {/* <p><strong>Ticket ID:</strong> {ticket.ticket_id}</p> */}
                         <p><strong>Subject:</strong> {ticket.subject}</p>
                         <p><strong>Status:</strong> {ticket.status}</p>
                         <p><strong>Category:</strong> {ticket.category} </p>
@@ -109,7 +138,8 @@ const TicketDetails = () => {
                         <p><strong>Created On:</strong> {new Date(ticket.created_at).toLocaleString()}</p>
                     </div>
                     <div className="media-files">
-                        <h3>Attachments</h3>
+                        <h3 className="attachments-heading">Attachments</h3>
+                        <hr className="heading-line" />
                         {ticket.attachments && ticket.attachments.length > 0 ? (
                             <div className="attachments">
                                 {ticket.attachments.map((file, index) => (
@@ -125,9 +155,46 @@ const TicketDetails = () => {
                             <p>No attachments available.</p>
                         )}
                     </div>
+                    {/* Rate Us Section - Outside Attachments */}
+                    {ticket.status === "Closed" && (
+                        <div className="rate-us-container">
+                            <button className="rate-us-button" onClick={() => setShowRatingModal(true)}>Rate Us</button>
+                        </div>
+                    )}
+
+                    {/* Rating Modal */}
+                    {showRatingModal && (
+                        <div className="rating-modal">
+                            <div className="rating-modal-content">
+                                <i className="bi bi-x-lg close-icon" onClick={() => setShowRatingModal(false)}></i>
+                                <h3>Rate Your Experience</h3>
+                                <div className="rating-stars">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <i
+                                            key={star}
+                                            className={`bi ${star <= rating ? "bi-star-fill" : "bi-star"} star-icon`}
+                                            onClick={() => setRating(star)}
+                                        ></i>
+                                    ))}
+                                </div>
+                                <textarea
+                                    value={feedback}
+                                    onChange={(e) => setFeedback(e.target.value)}
+                                    placeholder="Leave your feedback (optional)"
+                                    rows="3"
+                                    className="form-control"
+                                />
+                                <div className="modal-buttons">
+                                    <button className="btn btn-success" onClick={handleRatingSubmit}>Submit</button>
+                                    {/* <button className="btn btn-secondary" onClick={() => setShowRatingModal(false)}>Cancel</button> */}
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div className="col-lg-8 col-md-12">
-                    <div className="comments-section">
+                    <div className={`comments-section ${showRatingModal ? "hidden" : ""}`}>
+
                         {comments.length === 0 ? (
                             <p>No comments yet.</p>
                         ) : (
@@ -145,6 +212,10 @@ const TicketDetails = () => {
                                     </div>
                                 ))}
                             </div>
+                        )}
+                        {ticket.status === "Closed" && (
+                            <p className="resolved-message">
+                                Your issue has been resolved, and the ticket is closed now. If you have any more questions or concerns, feel free to contact us again.</p>
                         )}
                         {ticket.status === "In Progress" && (
                             <div className="comment-input">

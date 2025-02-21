@@ -21,20 +21,33 @@
 }
 
 .approve-btn {
-  background-color: #28a745;
-  color: white;
-  border: none;
+  background-color: transparent;
+  border: 2px solid green;
+  border-radius: 25px;
+  color: green;
+  /* border: none; */
   padding: 8px 12px;
   cursor: pointer;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .reject-btn {
-  background-color: #dc3545;
-  color: white;
-  border: none;
+  background-color: transparent;
+  color: red;
+  border: 2px solid red;
+  border-radius: 25px;
   padding: 8px 12px;
   cursor: pointer;
+}
+
+.approve-btn:hover{
+  background-color: green;
+  color: white;
+}
+
+.reject-btn:hover{
+  background-color: red;
+  color: white;
 }
 
 .no-users-message {

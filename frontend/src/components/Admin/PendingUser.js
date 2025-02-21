@@ -75,3 +75,4 @@ const PendingUser = () => {
 };
 
 export default PendingUser;
+

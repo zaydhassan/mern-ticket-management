@@ -14,6 +14,7 @@ const AgentTicketDetails = () => {
     const [commentLoading, setCommentLoading] = useState(false);
     const [commentError, setCommentError] = useState(null);
     const [userId, setUserId] = useState(null);
+    const [showFullDescription, setShowFullDescription] = useState(false);
 
     useEffect(() => {
         const fetchUserData = () => {
@@ -23,6 +24,7 @@ const AgentTicketDetails = () => {
                 setUserId(parsedUser.user_id);
             }
         };
+        
 
         const fetchTicketDetails = async () => {
             try {
@@ -45,6 +47,9 @@ const AgentTicketDetails = () => {
                 setLoading(false);
             }
         };
+
+        
+    
 
         const fetchComments = async () => {
             try {
@@ -97,13 +102,40 @@ const AgentTicketDetails = () => {
         }
     };
 
+    const handleResolveTicket = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            await axios.put(
+                `http://localhost:5000/api/ticket/${ticketId}/resolve`,
+                { status: "Resolved" },
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            );
+
+            setTicket({ ...ticket, status: "Resolved" });
+        } catch (error) {
+            console.error("Error resolving ticket:", error);
+            setError("Error updating ticket status");
+        }
+    };
+
+
     if (loading) return <p>Loading ticket details...</p>;
     if (error) return <p className="error">{error}</p>;
+
+    const getTruncatedDescription = (description, wordLimit = 50) => {
+        const words = description.split(" ");
+        if (words.length > wordLimit) {
+            return words.slice(0, wordLimit).join(" ") + "...";
+        }
+        return description;
+    };
 
     return (
         <div className="container-fluid ticket-details-container">
             <div className="header-container">
-                <h2>Ticket Details</h2>
+                <h2>Ticket Details #{ticket.ticket_id}</h2>
                 <a href="/dashboard-agent"><button className="btn btn-primary back-button">
                     Back
                 </button></a>
@@ -111,16 +143,31 @@ const AgentTicketDetails = () => {
             <div className="row">
                 <div className="col-lg-4 col-md-12">
                     <div className="ticket-info">
-                        <p><strong>Ticket ID:</strong> {ticket.ticket_id}</p>
+                    <h3 className="attachments-heading">Details</h3>
+                    <hr className="heading-line" />
+                        {/* <p><strong>Ticket ID:</strong> {ticket.ticket_id}</p> */}
                         <p><strong>Subject:</strong> {ticket.subject}</p>
                         <p><strong>Status:</strong> {ticket.status}</p>
                         <p><strong>Category:</strong> {ticket.category} </p>
                         <p><strong>Priority:</strong> {ticket.priority}</p>
-                        <p><strong>Description:</strong> {ticket.description}</p>
+                        <p><strong>Description:</strong> 
+                            {showFullDescription 
+                                ? ticket.description 
+                                : getTruncatedDescription(ticket.description)}
+                        </p>
+                        {ticket.description.split(" ").length > 50 && (
+                            <button 
+                                className="btn btn-link see-more-btn" 
+                                onClick={() => setShowFullDescription(!showFullDescription)}
+                            >
+                                {showFullDescription ? "See Less" : "See More"}
+                            </button>
+                        )}
                         <p><strong>Created On:</strong> {new Date(ticket.created_at).toLocaleString()}</p>
                     </div>
                     <div className="media-files">
-                        <h3>Attachments</h3>
+                    <h3 className="attachments-heading">Attachments</h3>
+                    <hr className="heading-line" />
                         {ticket.attachments && ticket.attachments.length > 0 ? (
                             <div className="attachments">
                                 {ticket.attachments.map((file, index) => (
@@ -136,6 +183,14 @@ const AgentTicketDetails = () => {
                             <p>No attachments available.</p>
                         )}
                     </div>
+                    <button
+                        className="btn btn-resolve"
+                        onClick={handleResolveTicket}
+                        disabled={ticket.status === "Resolved" || ticket.status === "Closed"}
+                    >
+                        {ticket.status === "Resolved" ? "Ticket Resolved" : "Resolve Ticket"}
+                    </button>
+
                 </div>
                 <div className="col-lg-8 col-md-12">
                     <div className="comments-section">
@@ -165,11 +220,17 @@ const AgentTicketDetails = () => {
                                 placeholder="Add a comment..."
                                 rows="2"
                                 className="form-control small-textarea"
+                                disabled={ticket.status === "Resolved" || ticket.status === "Closed"}  // Disable textarea when resolved
                             />
-                            <button className="btn btn-primary send-button" onClick={handleCommentSubmit} disabled={commentLoading}>
+                            <button
+                                className="btn btn-primary send-button"
+                                onClick={handleCommentSubmit}
+                                disabled={commentLoading || ticket.status === "Resolved" || ticket.status === "Closed"}  // Disable button when resolved
+                            >
                                 <i className="bi bi-send-fill"></i>
                             </button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -178,3 +239,4 @@ const AgentTicketDetails = () => {
 };
 
 export default AgentTicketDetails;
+

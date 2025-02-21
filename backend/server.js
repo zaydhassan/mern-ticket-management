@@ -218,6 +218,11 @@ app.use(ticketDetailsRouter);
 const commentRoutes = require("./routes/comments");
 app.use("/api/ticket", commentRoutes);
 
+const closeTicketRouter = require("./routes/closeticket"); // Import the routes
+app.use(closeTicketRouter);
+
+const ratingRouter = require("./routes/rating");
+app.use(ratingRouter);
 
 // Server Start
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
