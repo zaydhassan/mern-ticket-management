@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom"; // Import NavLink
 import "../../styles/navbar.css"; // Import your custom CSS
 import axios from "axios";
 
-const Navbar = () => {
+const AdminNavbar = () => {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
@@ -54,19 +55,19 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/dashboard-admin">
+              <NavLink className="nav-link" to="/dashboard-admin" end activeClassName="active-link">
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/dashboard-admin/all-tickets">
+              <NavLink className="nav-link" to="/dashboard-admin/all-tickets" activeClassName="active-link">
                 Tickets
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/dashboard-admin/resolved-tickets">
+              <NavLink className="nav-link" to="/dashboard-admin/resolved-tickets" activeClassName="active-link">
                 Resolved Tickets
-              </a>
+              </NavLink>
             </li>
           </ul>
 
@@ -111,4 +112,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AdminNavbar;

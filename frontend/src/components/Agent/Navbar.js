@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import "../../styles/navbar.css"; // Import your custom CSS
 import axios from "axios";
 
-const Navbar = () => {
+const AgentNavbar = () => {
   const [userName, setUserName] = useState("");
+  const location = useLocation(); // Get current route
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -11,7 +13,7 @@ const Navbar = () => {
         const token = localStorage.getItem("token"); // Assuming you store the JWT in localStorage
         const response = await axios.get("http://localhost:5000/api/user/profile", {
           headers: {
-            Authorization: `Bearer ${token}`, // Add the token to the request headers
+            Authorization: `Bearer ${token}`, // Fix template literal syntax
           },
         });
 
@@ -54,19 +56,32 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <NavLink
+                className="nav-link"
+                to="/dashboard-agent"
+                end 
+                activeClassName="active-link"
+              >
                 Assigned Tickets
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <NavLink
+                className="nav-link"
+                to="/dashboard-agent/pending-tickets"
+                activeClassName="active-link"
+              >
                 Pending Tickets
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <NavLink
+                className="nav-link"
+                to="/dashboard-agent/resolved-tickets"
+                activeClassName="active-link"
+              >
                 Resolved Tickets
-              </a>
+              </NavLink>
             </li>
           </ul>
 
@@ -93,7 +108,7 @@ const Navbar = () => {
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/change-password">
                     Change Password
                   </a>
                 </li>
@@ -111,4 +126,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AgentNavbar;

@@ -30,6 +30,7 @@ const AdminLogin = () => {
 
         // Save the token in localStorage
         localStorage.setItem('token', token);
+        localStorage.setItem("role", role);
 
         // Check if the user's role is Admin
         if (role === 'Admin') {

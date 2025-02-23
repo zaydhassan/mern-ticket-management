@@ -167,4 +167,3 @@ const AssignedTickets = () => {
 };
 
 export default AssignedTickets;
-

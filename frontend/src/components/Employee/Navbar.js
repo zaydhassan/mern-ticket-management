@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom"; // Import NavLink
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap CSS
 import "../../styles/navbar.css"; // Import your custom CSS
 import axios from "axios";
 
-const Navbar = () => {
+const EmployeeNavbar = () => {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
@@ -56,19 +57,19 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/dashboard-employee">
+              <NavLink className="nav-link" to="/dashboard-employee" end activeClassName="active-link">
                 Raise A Ticket
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/dashboard-employee/previous-tickets">
+              <NavLink className="nav-link" to="/dashboard-employee/previous-tickets" activeClassName="active-link">
                 View All Tickets
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <NavLink className="nav-link" to="/dashboard-employee/faqs" activeClassName="active-link">
                 FAQs
-              </a>
+              </NavLink>
             </li>
           </ul>
 
@@ -95,7 +96,7 @@ const Navbar = () => {
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/change-password">
                     Change Password
                   </a>
                 </li>
@@ -113,4 +114,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default EmployeeNavbar;

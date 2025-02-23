@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "./Navbar";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../styles/ticketspage.css";
 
@@ -83,7 +82,6 @@ const TicketsPage = () => {
 
   return (
     <>
-      <Navbar />
       <div className="ticket-container">
         {/* Unassigned Tickets */}
         <div className="table-container">

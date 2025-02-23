@@ -1,4 +1,3 @@
-/* Navbar Custom Styles */
 .custom-navbar {
   background-color: #d2ecff; /* Light blue background */
   width: 100vw; /* Full width */
@@ -21,6 +20,12 @@
 
 .navbar-nav .nav-link:hover {
   color: #0056b3; /* Darker shade on hover */
+}
+
+/* Active link styling */
+.navbar-nav .nav-link.active-link {
+  color: black ;
+  font-weight: bold;
 }
 
 .right-section .nav-item {

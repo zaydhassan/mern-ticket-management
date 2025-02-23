@@ -27,10 +27,15 @@ const Login = () => {
       if (response.data.message === "Login successful") {
         const token = response.data.token;
         const user = response.data.user;
+        const role = response.data.role;
   
         // Ensure token and user are stored correctly
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("role", role);
+
+        // Force re-render by updating a global state
+      window.dispatchEvent(new Event("storage"));
   
         if (response.data.role === "Employee") {
           navigate("/dashboard-employee");

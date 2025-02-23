@@ -1,7 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation, matchPath } from 'react-router-dom';
+import { useEffect, useState } from "react";
 import Register from './components/Register';
 import Login from './components/Login';
 import AdminLogin from './components/AdminLogin';
@@ -14,10 +15,48 @@ import TicketsPage from './components/Admin/TicketsPage';
 import TicketDetails from './components/Employee/TicketDetails';
 import AgentTicketDetails from './components/Agent/AgentTicketDetails';
 import ResolvedTickets from './components/Admin/ResolvedTickets';
+import AgentNavbar from "./components/Agent/Navbar";
+import EmployeeNavbar from "./components/Employee/Navbar";
+import AdminNavbar from "./components/Admin/Navbar";
+import PendingTickets from "./components/Agent/PendingTickets"
+import AgentResolvedTickets from "./components/Agent/ResolvedTickets";
 
-function App() {
+const App = () => {
+  const location = useLocation();
+  const [userRole, setUserRole] = useState(localStorage.getItem("role"));
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setUserRole(localStorage.getItem("role"));
+    };
+
+    // Listen for login/logout changes
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    setUserRole(localStorage.getItem("role"));  // Update role immediately on mount
+  }, [location.pathname]);  // Runs when route changes
+
+  // Pages where Navbar is NOT needed
+  const noNavbarRoutes = ["/login", "/register", "/adminlogin", "/change-password"];
+  const dynamicNoNavbarRoutes = ["/ticket/:ticketId", "/employee/ticket/:ticketId"];
+  const isNoNavbarPage = noNavbarRoutes.includes(location.pathname) ||
+    dynamicNoNavbarRoutes.some((route) => matchPath(route, location.pathname));
+
   return (
-    <Router>
+    <>
+      {!isNoNavbarPage && (
+        userRole === "Admin" ? <AdminNavbar /> :
+          userRole === "Agent" ? <AgentNavbar /> :
+            userRole === "Employee" ? <EmployeeNavbar /> :
+              null  // Fallback in case role is missing
+      )}
+
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard-employee" element={<EmployeeDashboard />} />
@@ -31,8 +70,10 @@ function App() {
         <Route path="/dashboard-admin/resolved-tickets" element={<ResolvedTickets />} />
         <Route path="/employee/ticket/:ticketId" element={<TicketDetails />} />
         <Route path="/ticket/:ticketId" element={<AgentTicketDetails />} />
+        <Route path="/dashboard-agent/pending-tickets" element={<PendingTickets />} />
+        <Route path="/dashboard-agent/resolved-tickets" element={<AgentResolvedTickets />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 

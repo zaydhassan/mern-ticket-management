@@ -239,4 +239,3 @@ const AgentTicketDetails = () => {
 };
 
 export default AgentTicketDetails;
-

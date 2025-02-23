@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Navbar from "./Navbar";
 import "../../styles/resolvedtickets.css";
 
 const ResolvedTickets = () => {
@@ -34,7 +33,6 @@ const ResolvedTickets = () => {
 
     return (
         <>
-            <Navbar />
             <div className="container mt-4">
                 <h2>Resolved Tickets</h2>
                 <table className="table table-bordered">
