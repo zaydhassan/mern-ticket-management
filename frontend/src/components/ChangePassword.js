@@ -91,7 +91,7 @@ const ChangePassword = () => {
             />
           </div>
 
-          <div className="button-group">
+          <div className="button-group-button">
             <button type="submit" className="btn btn-primary px-4">
               Change Password
             </button>

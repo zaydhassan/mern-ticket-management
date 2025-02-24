@@ -108,8 +108,8 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-
-
+const forgotPasswordRoutes = require("./routes/forgotpassword");
+app.use("/api", forgotPasswordRoutes);
 
 // Profile Endpoint
 app.get('/api/user/profile', authenticate, async (req, res) => {

@@ -10,6 +10,9 @@ const UserSchema = new mongoose.Schema({
   profile_image: { type: String, maxlength: 255 },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
+  resetToken: { type: String },
+  resetTokenExpiration: { type: Date },
+
 });
 
 

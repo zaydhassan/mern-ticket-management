@@ -88,6 +88,10 @@ const Login = () => {
         <p className="login-link">
           Login as <Link to="/adminlogin">Admin</Link>
         </p>
+
+        <p className="login-link">
+           <Link to="/forgot-password">Forgot Password</Link>
+        </p>
       </div>
     </div>
   );

@@ -5,6 +5,8 @@ import { Routes, Route, useLocation, matchPath } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Register from './components/Register';
 import Login from './components/Login';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 import AdminLogin from './components/AdminLogin';
 import EmployeeDashboard from './components/EmployeeDashboard';
 import AgentDashboard from './components/AgentDashboard';
@@ -43,8 +45,8 @@ const App = () => {
   }, [location.pathname]);  // Runs when route changes
 
   // Pages where Navbar is NOT needed
-  const noNavbarRoutes = ["/login", "/register", "/adminlogin", "/change-password"];
-  const dynamicNoNavbarRoutes = ["/ticket/:ticketId", "/employee/ticket/:ticketId"];
+  const noNavbarRoutes = ["/login", "/register", "/adminlogin", "/change-password", "/forgot-password"];
+  const dynamicNoNavbarRoutes = ["/ticket/:ticketId", "/employee/ticket/:ticketId", "/reset-password/:token"];
   const isNoNavbarPage = noNavbarRoutes.includes(location.pathname) ||
     dynamicNoNavbarRoutes.some((route) => matchPath(route, location.pathname));
 
@@ -59,6 +61,8 @@ const App = () => {
 
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/dashboard-employee" element={<EmployeeDashboard />} />
         <Route path="/dashboard-agent" element={<AgentDashboard />} />
         <Route path="/dashboard-admin" element={<AdminDashboard />} />
