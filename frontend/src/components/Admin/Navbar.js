@@ -61,7 +61,7 @@ const AdminNavbar = () => {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/dashboard-admin/all-tickets" activeClassName="active-link">
-                Tickets
+                Assign Agents
               </NavLink>
             </li>
             <li className="nav-item">
