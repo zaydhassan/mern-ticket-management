@@ -82,7 +82,7 @@ const Login = () => {
         {message && <p className="message">{message}</p>}
 
         <p className="login-link">
-          New user? <Link to="/register">Register now</Link>
+          New user? <Link to="/">Register now</Link>
         </p>
 
         <p className="login-link">

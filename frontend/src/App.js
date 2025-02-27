@@ -45,7 +45,7 @@ const App = () => {
   }, [location.pathname]);  // Runs when route changes
 
   // Pages where Navbar is NOT needed
-  const noNavbarRoutes = ["/login", "/register", "/adminlogin", "/change-password", "/forgot-password"];
+  const noNavbarRoutes = ["/login", "/", "/adminlogin", "/change-password", "/forgot-password"];
   const dynamicNoNavbarRoutes = ["/ticket/:ticketId", "/employee/ticket/:ticketId", "/reset-password/:token"];
   const isNoNavbarPage = noNavbarRoutes.includes(location.pathname) ||
     dynamicNoNavbarRoutes.some((route) => matchPath(route, location.pathname));
@@ -60,13 +60,13 @@ const App = () => {
       )}
 
       <Routes>
+        <Route path="/" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/dashboard-employee" element={<EmployeeDashboard />} />
         <Route path="/dashboard-agent" element={<AgentDashboard />} />
         <Route path="/dashboard-admin" element={<AdminDashboard />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/dashboard-employee/previous-tickets" element={<PreviousTickets />} />
