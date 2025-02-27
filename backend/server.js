@@ -41,7 +41,7 @@ const authenticate = (req, res, next) => {
 };
 
 // Register Endpoint (For Testing)
-const bcrypt = require('bcrypt'); // Import bcrypt
+const bcrypt = require('bcryptjs'); // Import bcrypt
 const saltRounds = 10; // Number of salt rounds for hashing
 
 app.post('/api/register', async (req, res) => {

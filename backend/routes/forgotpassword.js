@@ -1,6 +1,6 @@
 const express = require("express");
 const crypto = require("crypto"); // For generating secure tokens
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const nodemailer = require("nodemailer"); // For sending emails
 
