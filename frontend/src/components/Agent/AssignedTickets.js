@@ -23,7 +23,7 @@ const AssignedTickets = () => {
                     return;
                 }
     
-                const response = await axios.get("http://localhost:5000/api/assignedtickets", {
+                const response = await axios.get("https://polysia-ticket-management-backend.onrender.com/api/assignedtickets", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
     

@@ -29,7 +29,7 @@ const TicketDetails = () => {
         const fetchTicketDetails = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const response = await axios.get(`http://localhost:5000/api/ticket/${ticketId}`, {
+                const response = await axios.get(`https://polysia-ticket-management-backend.onrender.com/api/ticket/${ticketId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
@@ -37,7 +37,7 @@ const TicketDetails = () => {
                     ...response.data.ticket,
                     attachments: response.data.ticket.attachments.map(file => ({
                         ...file,
-                        fileUrl: `http://localhost:5000/${file.file_url}`,
+                        fileUrl: `https://polysia-ticket-management-backend.onrender.com/${file.file_url}`,
                     })),
                 };
                 setTicket(updatedTicket);
@@ -51,7 +51,7 @@ const TicketDetails = () => {
         const fetchComments = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const response = await axios.get(`http://localhost:5000/api/ticket/${ticketId}/comments`, {
+                const response = await axios.get(`https://polysia-ticket-management-backend.onrender.com/api/ticket/${ticketId}/comments`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setComments(response.data.comments);
@@ -71,7 +71,7 @@ const TicketDetails = () => {
         try {
             const token = localStorage.getItem("token");
             const response = await axios.post(
-                `http://localhost:5000/api/ticket/${ticketId}/comments`,
+                `https://polysia-ticket-management-backend.onrender.com/api/ticket/${ticketId}/comments`,
                 { content: newComment },
                 {
                     headers: { Authorization: `Bearer ${token}` },
@@ -100,7 +100,7 @@ const TicketDetails = () => {
         try {
             const token = localStorage.getItem("token");
             await axios.post(
-                `http://localhost:5000/api/ticket/${ticketId}/rate`,
+                `https://polysia-ticket-management-backend.onrender.com/api/ticket/${ticketId}/rate`,
                 { rating, feedback },
                 {
                     headers: { Authorization: `Bearer ${token}` },

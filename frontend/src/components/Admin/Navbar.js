@@ -10,7 +10,7 @@ const AdminNavbar = () => {
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem("token"); // Assuming you store the JWT in localStorage
-        const response = await axios.get("http://localhost:5000/api/user/profile", {
+        const response = await axios.get("https://polysia-ticket-management-backend.onrender.com/api/user/profile", {
           headers: {
             Authorization: `Bearer ${token}`, // Add the token to the request headers
           },
