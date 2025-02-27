@@ -224,4 +224,3 @@ app.use(ratingRouter);
 
 // Server Start
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
