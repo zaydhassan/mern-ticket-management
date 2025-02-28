@@ -22,6 +22,11 @@ app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // Serve uploaded files
 app.use(ticketsRouter);
 
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+});
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log("MongoDB Connected")).catch(err => console.error(err));
